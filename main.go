@@ -2,14 +2,25 @@ package main
 
 import (
 	"fmt"
-	"strings"
+
+	"github.com/1017toa/go-learning/mydict"
 )
 
-func lenAndUpper(name string) (int, string) {
-	return len(name), strings.ToUpper(name)
-}
-
 func main() {
-	totalLenght, upperName := lenAndUpper("saem")
-	fmt.Println(totalLenght, upperName)
+	dictionary := mydict.Dictionary{}
+	baseWord := "hello"
+	dictionary.Add(baseWord, "First")
+	err := dictionary.Update(baseWord, "Second")
+	if err != nil {
+		fmt.Println(err)
+	}
+	word, _ := dictionary.Search(baseWord)
+	fmt.Println(word)
+	del := dictionary.Delete(baseWord)
+	if err != nil {
+		fmt.Println(del)
+	}
+	word2, _ := dictionary.Search(baseWord)
+	fmt.Println(word2)
+
 }
